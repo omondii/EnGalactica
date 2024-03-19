@@ -1,0 +1,32 @@
+@import "fonts.css";
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -20px 40px 120px;
+  color: white;
+}
+.nav-logo{
+  font-family: "Sriracha", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+}
+.nav-menu{
+  display: flex;
+  align-items: center;
+  list-style: none;
+  font-size: 18px;
+  gap: 90px;
+}
+.nav-contact{
+  border-radius: 50px;
+  padding: 10px 38px;
+  background: rgb(223, 170, 100);
+  color: white;
+}
+
+.nav-menu:hover{
+  color: black;
+}
