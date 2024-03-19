@@ -1,3 +1,4 @@
+import '../assets/css/Home.css';
 import React, { useState, useEffect } from 'react';
 
 const Home = () => {
@@ -10,14 +11,13 @@ const Home = () => {
               try{
                      const response = await fetch('/POTD');
                      const data = await response.json();
-                     setPicture(data.url);
+                     setPicture(data.hdurl);
               } catch (error){
                      console.error("Error:", error);
               }
        };
        return (
-              <div className='potd'>
-                     <h1>Today's Picture of the day</h1>
+              <div className='potd' style={{backgroundImage: `url(${picture})`}}>
                      {picture && (
                             <img
                             src={picture}

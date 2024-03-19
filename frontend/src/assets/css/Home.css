@@ -1,0 +1,12 @@
+.potd {
+    height: 100vh;
+    width: 100vh;
+    position: fixed;
+    size: cover;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: none;
+    object-fit: fit;
+    z-index: -1;
+  }
