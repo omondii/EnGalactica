@@ -8,11 +8,13 @@ from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
 import requests
+from .cache import cache_storage
 
 load_dotenv()
 nkey = os.getenv("NASA_API_KEY")
 
 @app_views.route('/skymap', strict_slashes=False)
+@cache_storage(timeout=21600)
 def NeoWs():
     """ View to return Near Earth Asteroid information within a
     7 day period

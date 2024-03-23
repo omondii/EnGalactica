@@ -5,12 +5,14 @@ import ipdata
 import os
 from dotenv import load_dotenv
 from models import app_views
+from .cache import cache_response
 
 location_bp = Blueprint('location', __name__)
 
 load_dotenv()
 key = os.getenv("IPDATA_API_KEY")
 
+@cache_response(timeout=21600)
 def get_userloc():
     """ Get user latitude and longitude based on their IP address
     Returns Longitude, Latitude
