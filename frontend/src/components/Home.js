@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const Home = () => {
        const [picture, setPicture] = useState(null);
+       const [text, setText] = useState();
        useEffect(() => {
               fetchPOTD();
        }, []);
@@ -12,18 +13,22 @@ const Home = () => {
                      const response = await fetch('/POTD');
                      const data = await response.json();
                      setPicture(data.hdurl);
+                     setText(data.explanation);
               } catch (error){
                      console.error("Error:", error);
               }
        };
        return (
-              <div className='potd' style={{backgroundImage: `url(${picture})`}}>
+              <div className='potd'>
                      {picture && (
                             <img
                             src={picture}
                             alt="Picture of the Day"
                             />
                      )}
+                     <p className='text'>
+                            {text}
+                     </p>
               </div>
        )
 };

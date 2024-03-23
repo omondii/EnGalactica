@@ -2,7 +2,7 @@ import './App.css';
 import {Route, Routes, BrowserRouter} from 'react-router-dom';
 import Header from "./components/Header.js";
 import Home from "./components/Home.js"
-import skyMap from "./components/skyMap.js";
+import Skymap from "./components/Skymap.js";
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 
     <Routes>
       <Route path='/' element={<Home />}></Route>
-      <Route path='/skymap' element={<skyMap />}></Route>
+      <Route path='/Skymap' element={<Skymap />}></Route>
     </Routes>
     </BrowserRouter>
     

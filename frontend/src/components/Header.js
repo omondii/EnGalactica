@@ -11,7 +11,7 @@ const Header = () => {
                  <p><Link to="/">EnGalactica</Link></p>
             </div>
             <ul className='nav-menu'>
-                <li><Link to="/">SKYMAP</Link></li>
+                <li><Link to="/skymap">SKYMAP</Link></li>
                 <li><Link to="/about">WEATHER</Link></li>
                 <li className='nav-contact'>Contact</li>
             </ul>

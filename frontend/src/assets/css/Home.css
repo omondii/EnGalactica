@@ -10,3 +10,8 @@
     object-fit: fit;
     z-index: -1;
   }
+
+.text {
+  color: cadetblue;
+  background-color: white;
+}

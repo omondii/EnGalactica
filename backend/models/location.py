@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 """ Views for all location functionalities """
-from flask import Blueprint
+from flask import Blueprint, jsonify
 import ipdata
 import os
+from dotenv import load_dotenv
+from models import app_views
 
 location_bp = Blueprint('location', __name__)
-ip_Key = os.environ.get("IPDATA_KEY")
+
+load_dotenv()
+key = os.getenv("IPDATA_API_KEY")
 
 def get_userloc():
-    ipdata.ip_key = ip_Key
+    """ Get user latitude and longitude based on their IP address
+    Returns Longitude, Latitude
+    """
+    ipdata.api_key = key
     data = ipdata.lookup()
-    return(data.latitude, data.longitude)
-
-latitude, longitude = get_userloc()
-print(f"Latitude: {latitude}, Longitude: {longitude}")
+    return jsonify(data.json())
 
