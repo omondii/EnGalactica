@@ -8,6 +8,8 @@ from nasapy import Nasa
 from datetime import datetime, timedelta
 import requests
 from models import app_views
+import redis
+from models.cache import cache_response
 
 
 load_dotenv()
@@ -16,10 +18,12 @@ nkey = os.getenv("NASA_API_KEY")
 app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources = {'r/backend/*': {'origins': 'http://localhost:8080'}})
+redis_client = redis.Redis(db=0)
 
 nasa = Nasa(key=nkey)
 
 @app.route("/POTD", strict_slashes=False)
+@cache_response(timeout=8400)
 def daily_pic():
     """ View func to retrieve & return the Picture Of The Day from the Nasa Api using
     users current time.
