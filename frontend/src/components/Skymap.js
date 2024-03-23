@@ -5,23 +5,23 @@ const Skymap = () => {
   const [asteroids, setAsteroids] = useState([]);
 
   useEffect(() => {
+    const fetchAsteroids = async () => {
+      try {
+        const response = await fetch('/backend/models/skymap');
+        if (response.ok) {
+          const data = await response.json();
+          const sortedAsteroids = sortAsteroids(data);
+          setAsteroids(sortedAsteroids);
+        } else {
+          console.error('Failed to fetch asteroids:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching asteroids:', error);
+      }
+    };
     fetchAsteroids();
   }, []);
 
-  const fetchAsteroids = async () => {
-    try {
-      const response = await fetch('/backend/models/skymap');
-      if (response.ok) {
-        const data = await response.json();
-        const sortedAsteroids = sortAsteroids(data);
-        setAsteroids(sortedAsteroids);
-      } else {
-        console.error('Failed to fetch asteroids:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error fetching asteroids:', error);
-    }
-  };
 
   const sortAsteroids = (data) => {
     const today = new Date().toISOString().split('T')[0];
@@ -35,6 +35,7 @@ const Skymap = () => {
 
   return (
     <div className="asteroid-container">
+      <h2>Asteroids Closest to Earth Today: </h2>
       {asteroids.map((asteroid, index) => (
         <div key={index} className="asteroid-card">
           <h3>Asteroid Name: {asteroid.name}</h3>
