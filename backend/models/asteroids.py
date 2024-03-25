@@ -3,19 +3,20 @@
 Returns;
     Asteroids closest to earth based on its date
 """
+from models import cache
 from models import app_views
 from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
 import requests
-from .cache import cache_response
+
 
 
 load_dotenv()
 nkey = os.getenv("NASA_API_KEY")
 
 @app_views.route('/skymap', strict_slashes=False)
-@cache_response(timeout=21600)
+#@cache.cached(timeout=300)
 def NeoWs():
     """ View to return Near Earth Asteroid information within a
     7 day period

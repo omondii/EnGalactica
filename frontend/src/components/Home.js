@@ -27,6 +27,7 @@ const Home = () => {
                             />
                      )}
                      <p className='text'>
+                            <p>Today's Picture of the Day from NASA</p>
                             {text}
                      </p>
               </div>

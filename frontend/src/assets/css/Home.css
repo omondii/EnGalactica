@@ -1,17 +1,47 @@
-.potd {
-    height: 100vh;
-    width: 100vh;
-    position: fixed;
-    size: cover;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    padding: none;
-    object-fit: fit;
-    z-index: -1;
-  }
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
 
-.text {
-  color: cadetblue;
-  background-color: white;
+.potd .text p:first-child {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: .15em solid orange;
+  width: 0;
+  animation: typing 15s steps(30) 1;
+  position: relative;
+}
+
+.potd .text p:first-child:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: .15em;
+  height: 100%;
+  background: white;
+}
+
+
+
+.potd {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  background-color: black;
+  margin-top: 2%;
+  margin-left: 15%;
+  margin-right: 10%;
+}
+
+.potd img {
+  flex: 3;
+  object-fit: cover;
+}
+
+.potd .text {
+  flex: 1;
+  padding-left: 20px;
+  color:antiquewhite;
 }

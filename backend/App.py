@@ -23,7 +23,7 @@ redis_client = redis.Redis(db=0)
 nasa = Nasa(key=nkey)
 
 @app.route("/POTD", strict_slashes=False)
-@cache_response(timeout=8400)
+#@cache_response(timeout=600)
 def daily_pic():
     """ View func to retrieve & return the Picture Of The Day from the Nasa Api using
     users current time.

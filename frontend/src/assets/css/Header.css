@@ -4,14 +4,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: -20px 40px 120px;
-  color: white;
+  margin: -10px;
+  height: 10vh;
 }
 .nav-logo{
   font-family: "Sriracha", cursive;
   font-weight: 400;
   font-style: normal;
   font-size: 30px;
+  margin-left: 1vh;
+  color: aquamarine;
 }
 .nav-menu{
   display: flex;
