@@ -1,4 +1,26 @@
-.asteroid-container{
-    margin-top: auto;
+.asteroid-grid {
+    display: grid;
+    margin: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
     color: antiquewhite;
+    overflow-y: scroll;
+  }
+  .h1 {
+    color: blanchedalmond;
+  }
+  
+  .asteroid-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+.popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
 }
+  

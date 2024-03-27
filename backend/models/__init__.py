@@ -6,5 +6,5 @@ app_views = Blueprint('app_views', __name__, url_prefix='/backend/models')
 
 
 from models.location import *
-from models.asteroids import *
+from models.space import *
 from models.cache import *

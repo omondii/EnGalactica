@@ -1,9 +1,8 @@
 body {
-  background-image: url('./assets/images/background.jpg');
+  background-color: black;
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
-  overflow: hidden;
   z-index: -1;
   opacity: 20;
 }

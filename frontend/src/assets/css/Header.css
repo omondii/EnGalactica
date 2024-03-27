@@ -1,34 +1,71 @@
 @import "fonts.css";
 
-.nav{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: -10px;
-  height: 10vh;
-}
-.nav-logo{
-  font-family: "Sriracha", cursive;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 30px;
-  margin-left: 1vh;
-  color: aquamarine;
-}
-.nav-menu{
-  display: flex;
-  align-items: center;
-  list-style: none;
-  font-size: 18px;
-  gap: 90px;
-}
-.nav-contact{
-  border-radius: 50px;
-  padding: 10px 38px;
-  background: rgb(223, 170, 100);
-  color: white;
+.nav {
+    display: flex;
+    background-color: #242424;
+    color: #ffffff;
+    height: 45px;
 }
 
-.nav-menu:hover{
-  color: black;
+.nav-logo {
+    font-family: "Sriracha", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    color: aquamarine;
+}
+
+.nav-menu {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-menu.active {
+  transform: translateX(0);
+}
+
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu ul li {
+    margin-bottom: 15px;
+}
+
+.nav-menu ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.nav-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-menu {
+        flex-basis: 100%;
+        text-align: center;
+        background-color: #111;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        display: none;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-menu.active {
+        display: block;
+    }
+
+    .nav-menu ul li {
+        margin-bottom: 10px;
+    }
 }

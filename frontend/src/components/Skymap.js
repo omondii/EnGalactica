@@ -34,7 +34,6 @@ const Skymap = () => {
     return todayAsteroids.concat(upcomingAsteroids);
   };
   
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -44,12 +43,10 @@ const Skymap = () => {
   }
 
   return (
-    <div className="asteroid-container">
-      <h2>Asteroids Closest to Earth Today: </h2>
-      {asteroids.length === 0 ? (
-        <div>No asteroids found.</div>
-      ) : (
-        asteroids.map((asteroid, index) => (
+    <div>
+      <h1 className='h1'>Asteroids Closest to Earth today</h1>
+      <div className="asteroid-grid">
+        {asteroids.map((asteroid, index) => (
           <div key={index} className="asteroid-card">
             <h3>Asteroid Name: {asteroid.name}</h3>
             <p>Closest Approach Date: {asteroid.close_approach_data[0].close_approach_date}</p>
@@ -59,8 +56,8 @@ const Skymap = () => {
             </p>
             <p>Speed: {asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour} km/h</p>
           </div>
-        ))
-      )}
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,27 +1,46 @@
-import React from 'react'
-import { CiMenuKebab } from 'react-icons/ci';
-import {Link} from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { FiMenu } from 'react-icons/fi';
 import '../assets/css/Header.css';
 
-
 const Header = () => {
-    return(
-        <div className="nav">
+    const [menuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef();
+
+    const handleMenuToggle = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    return (
+        <nav className="nav">
             <div className='nav-logo'>
-                 <p><Link to="/">EnGalactica</Link></p>
+                <Link to="/">EnGalactica</Link>
             </div>
-            <ul className='nav-menu'>
-                <li><Link to="/skymap">SKYMAP</Link></li>
-                <li><Link to="/about">WEATHER</Link></li>
-                <li className='nav-contact'>Contact</li>
-            </ul>
-            {/*
-            <CiMenuKebab size={28} className='hidden ml-0'/>
-            <div className='flex items-center p-10'>
-            <p><Link to="#">Account</Link></p>
+            <div ref={menuRef} className={`nav-menu ${menuOpen ? 'active' : ''}`}>
+                <ul>
+                    <li><Link to="/skymap" onClick={handleMenuToggle}>SKYMAP</Link></li>
+                    <li><Link to="/about" onClick={handleMenuToggle}>WEATHER</Link></li>
+                    <li className='nav-contact'><Link to="/contact" onClick={handleMenuToggle}>Contact</Link></li>
+                </ul>
             </div>
-            */}
-        </div>
-        )
-}
-export default Header
+            <button aria-label="Toggle Menu" className="nav-toggle" onClick={handleMenuToggle}>
+                <FiMenu />
+            </button>
+        </nav>
+    );
+};
+
+export default Header;

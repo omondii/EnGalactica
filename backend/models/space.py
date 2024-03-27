@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
 import requests
+from .location import get_userloc
 
 
 
@@ -33,3 +34,23 @@ def NeoWs():
             print(f'Request failed with status code {response.status_code}')
     except Exception as e:
         print(f'Error: {e}')
+
+@app_views.route('/moon', strict_slashes=False)
+def planets():
+    """ View function to return visible planets in the night sky 
+    based on user location
+    """
+    data = get_userloc()
+    longitude = data.longitude
+    latitude = data.latitude
+    try:
+        url = f'https://moon-phase.p.rapidapi.com/advanced?lat={latitude}&lon={longitude}'
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            return data
+        else:
+            print(f'Failed to fetch data: {response.status_code}')
+    except Exception as e:
+        print(f'Error: {e}')
+
