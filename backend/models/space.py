@@ -20,7 +20,7 @@ nkey = os.getenv("NASA_API_KEY")
 #@cache.cached(timeout=300)
 def NeoWs():
     """ View to return Near Earth Asteroid information within a
-    7 day period
+    7 day period -> NASA NeoWs API
     """
     try:
         end = datetime.today().strftime('%Y-%m-%d')
@@ -37,7 +37,7 @@ def NeoWs():
 
 @app_views.route('/moon', strict_slashes=False)
 def planets():
-    """ View function to return visible planets in the night sky 
+    """ View function to return the moon/sun & planets in the night sky 
     based on user location
     """
     data = get_userloc()

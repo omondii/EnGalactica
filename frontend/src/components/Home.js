@@ -35,7 +35,6 @@ const Home = () => {
                             <p>Title: {title}</p>
                             <p>Shot By: {author}</p>
                             {text}
-                            
                      </p>
               </div>
        )
