@@ -41,12 +41,12 @@ const Home = () => {
   return (
     <div>
       <div className='date'>
-      <DatePicker
+      <label><DatePicker
           selected={selectedDate}
           onChange={handleDateChange}
           dateFormat='yyyy/MM/dd'
           maxDate={new Date()}
-          customInput={<CustomInput />} />
+          customInput={<CustomInput />} /></label>
       </div>
       <div className='potd'>
         {picture && (

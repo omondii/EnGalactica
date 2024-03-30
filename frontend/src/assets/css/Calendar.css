@@ -10,3 +10,7 @@
     z-index: 1000; /* Ensure it's above the calendar */
   }
   
+  .input-group-text {
+    height: 40px;
+    width: 100%;
+  }
