@@ -1,3 +1,6 @@
+body {
+  overflow: scroll;
+}
 .asteroid-grid {
     display: grid;
     margin: 15px;
