@@ -1,9 +1,5 @@
 import '../assets/css/Home.css';
-import React, { useState, useEffect, forwardRef } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { CustomInput } from "./Calendar";
-
+import React, { useState, useEffect } from 'react';
 
 const Home = () => {
   const [picture, setPicture] = useState(null);
@@ -65,5 +61,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;

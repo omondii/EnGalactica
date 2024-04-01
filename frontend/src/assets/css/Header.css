@@ -1,32 +1,27 @@
 @import "fonts.css";
 
-.active{
-    background-color: rgb(89, 83, 75);
-}
-.body {
-    font-size: larger;
-}
-
-nav {
+.nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: transparent;
-    color: bisque;
-    position: sticky;
-    top: 0;
+    background-color: #242424;
+    color: #ffffff;
+    height: 45px;
 }
 
-.logo {
-    font-size: 2rem;
-    margin: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: bisque;
+.nav-logo {
+    font-family: "Sriracha", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    color: aquamarine;
 }
 
-nav ul {
-    display: flex;
+.nav-menu {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-menu.active {
+  transform: translateX(0);
 }
 
 nav ul li {
@@ -34,67 +29,37 @@ nav ul li {
    font-size: 1.5rem;
 }
 
-nav ul li a {
-    display: block;
+.nav-menu ul li a {
+    color: #ffffff;
     text-decoration: none;
-    color: bisque;
-    padding: 0.5rem;
-    margin: 0 0.5rem;
-    border-radius: 0.5rem;
-    margin-right: 15px;
 }
 
-nav ul li a:not(.active):hover {
-    background-color:dimgray;
-    color: goldenrod;
-}
-
-nav .menu {
+.nav-toggle {
     display: none;
-    position: absolute;
-    top: 0.75rem;
-    right: 0.5rem;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 2.25rem;
-    height: 2rem;
+    cursor: pointer;
 }
 
-nav .menu span {
-    height: 0.4rem;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 0.2rem;
-}
-
-
-@media (max-width: 50%) {
-    nav .menu {
-        display: flex;
-    }
-
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        margin-bottom: 0.25rem;
-    }
-
-    nav ul.open {
-        display: flex;
-    }
-
-    nav ul li {
-        width: 100%;
+@media screen and (max-width: 768px) {
+    .nav-menu {
+        flex-basis: 100%;
         text-align: center;
+        background-color: #111;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        display: none;
     }
 
-    nav ul li a {
-        margin: 0.2rem 0.5rem;
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-menu.active {
+        display: block;
+    }
+
+    .nav-menu ul li {
+        margin-bottom: 10px;
     }
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """  """
-from flask import Flask, jsonify, Blueprint, request
+from flask import Flask, jsonify, Blueprint
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
@@ -30,13 +30,8 @@ def daily_pic():
     Returns json containing the Picture and Information about it
     """
     try:
-        date = request.args.get('date')
-        if date is not None:
-            date = datetime.strptime(date, '%Y-%m-%d')
-        else:
-            date = datetime.today().strftime('%Y-%m-%d')
-
-        url = f'https://api.nasa.gov/planetary/apod?api_key={nkey}&date={date}'
+        today = datetime.today().strftime('%Y-%m-%d')
+        url = f'https://api.nasa.gov/planetary/apod?api_key={nkey}&date={today}'
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
