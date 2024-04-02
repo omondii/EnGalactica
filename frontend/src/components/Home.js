@@ -1,5 +1,6 @@
 import '../assets/css/Home.css';
 import React, { useState, useEffect } from 'react';
+import DatePicker from "react-datepicker";
 
 const Home = () => {
   const [picture, setPicture] = useState(null);
@@ -42,7 +43,8 @@ const Home = () => {
           onChange={handleDateChange}
           dateFormat='yyyy/MM/dd'
           maxDate={new Date()}
-          customInput={<CustomInput />} /></label>
+          //customInput={<CustomInput />}
+          /></label>
       </div>
       <div className='potd'>
         {picture && (
