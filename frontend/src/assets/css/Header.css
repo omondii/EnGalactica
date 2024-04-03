@@ -39,7 +39,8 @@ nav ul li a {
 }
 
 nav ul li a:not(.active):hover {
-    background-color:gold;
+    background-color: darkgray;
+    text-decoration: solid;
 }
 
 nav .menu {

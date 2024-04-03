@@ -3,6 +3,7 @@
 Returns;
     Asteroids closest to earth based on its date
 """
+from flask import jsonify
 from models import cache
 from models import app_views
 from datetime import datetime, timedelta
@@ -16,7 +17,7 @@ from .location import get_userloc
 load_dotenv()
 nkey = os.getenv("NASA_API_KEY")
 
-@app_views.route('/skymap', strict_slashes=False)
+@app_views.route('/skymap', strict_slashes=False, methods=['GET', 'POST'])
 #@cache.cached(timeout=300)
 def NeoWs():
     """ View to return Near Earth Asteroid information within a
@@ -29,11 +30,11 @@ def NeoWs():
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
-            return data
+            return jsonify(data)
         else:
-            print(f'Request failed with status code {response.status_code}')
+            return jsonify({'error': f'Request failed with status code {response.status_code}'}), response.status_code
     except Exception as e:
-        print(f'Error: {e}')
+        return jsonify({'error': f'Internal Server Error: {e}'}), 500
 
 @app_views.route('/moon', strict_slashes=False)
 def planets():
@@ -48,9 +49,9 @@ def planets():
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
-            return data
+            return jsonify(data)
         else:
-            print(f'Failed to fetch data: {response.status_code}')
+            return jsonify({'error': f'Request failed with status code {response.status_code}'}), response.status_code
     except Exception as e:
-        print(f'Error: {e}')
+        return jsonify({'error': f'Internal Server Error: {e}'}), 500
 

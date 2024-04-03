@@ -17,12 +17,12 @@ nkey = os.getenv("NASA_API_KEY")
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
-CORS(app, resources = {'r/backend/*': {'origins': 'http://localhost:8080'}})
+CORS(app, resources = {'r/backend/*': {'origins': 'http://backend:5000'}})
 redis_client = redis.Redis(db=0)
 
 nasa = Nasa(key=nkey)
 
-@app.route("/POTD", strict_slashes=False)
+@app.route("/POTD", strict_slashes=False, methods=['GET'])
 #@cache_response(timeout=600)
 def daily_pic():
     """ View func to retrieve & return the Picture Of The Day from the Nasa Api using

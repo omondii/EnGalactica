@@ -22,10 +22,10 @@ const Header = () => {
           </div>
           <ul className={menuOpen ? "open" : ""}>
             <li>
-              <NavLink to="/skymap">SkyMap</NavLink>
+              <NavLink to="/weather">Planets</NavLink>
             </li>
             <li>
-              <NavLink to="/weather">Planets</NavLink>
+              <NavLink to="/skymap">Asteroids</NavLink>
             </li>
             <li>
               <NavLink to="/Planets">More</NavLink>
