@@ -34,6 +34,7 @@ flask-marshmallow==0.15.0
 Flask-SQLAlchemy==3.1.1
 future==0.18.2
 greenlet==2.0.2
+gunicorn==21.2.0
 html5lib==1.1
 httplib2==0.20.2
 hyperlink==21.0.0
