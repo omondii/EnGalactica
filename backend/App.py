@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """  """
 from flask import Flask, jsonify, Blueprint
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
+from flask.helpers import send_from_directory
 from dotenv import load_dotenv
 import os
 from nasapy import Nasa
@@ -12,12 +13,13 @@ import redis
 from models.cache import cache_response
 
 
+
 load_dotenv()
 nkey = os.getenv("NASA_API_KEY")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='frontend/build')
 app.register_blueprint(app_views)
-CORS(app, resources = {'r/backend/*': {'origins': 'http://backend:5000'}})
+CORS(app, resources = {'r/backend/*': {'origins': 'http://localhost:5000'}})
 redis_client = redis.Redis(db=0)
 
 nasa = Nasa(key=nkey)
@@ -45,7 +47,10 @@ def daily_pic():
             return jsonify({'error': 'Failed to fetch POTD'})
     except Exception as e:
         print(f'Error: {e}')
-        
+
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

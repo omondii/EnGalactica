@@ -4,6 +4,7 @@
         "hdurl",
         "IPDATA",
         "nasapy",
-        "POTD"
+        "POTD",
+        "RAPIDAPI"
     ]
 }

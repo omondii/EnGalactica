@@ -14,7 +14,7 @@ const Skymap = () => {
   useEffect(() => {
     const fetchAsteroids = async () => {
       try {
-        const response = await fetch('/backend/models/skymap');
+        const response = await fetch('/skymap');
         if (!response.ok) {
           throw new Error('Failed to fetch asteroids: ' + response.statusText);
         }

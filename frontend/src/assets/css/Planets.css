@@ -1,0 +1,22 @@
+/* Planets.css */
+body{
+  font-size: larger;
+  color: azure;
+}
+.planets-container {
+    display: flex;
+    height: 80vh;
+    border: 1px solid #000;
+    margin-top: 5vh;
+  }
+  
+  .sun-side,
+  .moon-side {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+  .emoji{
+    size: 50px;
+  }
