@@ -5,6 +5,7 @@
         "IPDATA",
         "nasapy",
         "POTD",
-        "RAPIDAPI"
+        "RAPIDAPI",
+        "spacenews"
     ]
 }

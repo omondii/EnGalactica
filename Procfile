@@ -1,1 +1,0 @@
-web: gunicorn backend.App:app

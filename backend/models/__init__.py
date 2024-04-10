@@ -2,9 +2,11 @@
 """ API Blueprint """
 from flask import Blueprint
 
+
 app_views = Blueprint('app_views', __name__, url_prefix='')
 
-
-from models.location import *
-from models.space import *
-from models.cache import *
+# Redis Configuration
+config = {
+    'CACHE_TYPE': 'redis',
+    'CACHE_REDIS_URL':'redis://localhost:6379/0'
+    }

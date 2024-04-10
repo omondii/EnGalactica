@@ -1,31 +1,29 @@
 #!/usr/bin/env python3
-"""  """
+""" Flask Backend entry point. """
 from flask import Flask, jsonify, Blueprint
 from flask_cors import CORS, cross_origin
 from flask.helpers import send_from_directory
 from dotenv import load_dotenv
 import os
-from nasapy import Nasa
 from datetime import datetime, timedelta
 import requests
 from models import app_views
-import redis
-from models.cache import cache_response
-
+from flask_caching import Cache
+from models import config
 
 
 load_dotenv()
 nkey = os.getenv("NASA_API_KEY")
+rapid_key = os.getenv("RAPIDAPI_API_KEY")
 
 app = Flask(__name__, static_folder='frontend/build')
 app.register_blueprint(app_views)
 CORS(app, resources = {'r/backend/*': {'origins': 'http://localhost:5000'}})
-redis_client = redis.Redis(db=0)
+cache = Cache(app, config)
 
-nasa = Nasa(key=nkey)
 
 @app.route("/POTD", strict_slashes=False, methods=['GET'])
-#@cache_response(timeout=600)
+@cache.cached(timeout=100)
 def daily_pic():
     """ View func to retrieve & return the Picture Of The Day from the Nasa Api using
     users current time.
@@ -54,3 +52,4 @@ def serve():
 
 if __name__ == '__main__':
     app.run(debug=True)
+from models.space import *

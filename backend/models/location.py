@@ -5,8 +5,6 @@ import ipdata
 import os
 from dotenv import load_dotenv
 
-location_bp = Blueprint('location', __name__)
-
 load_dotenv()
 key = os.getenv("IPDATA_API_KEY")
 

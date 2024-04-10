@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://whispering-fjord-87288-27fcbe9cf67f.herokuapp.com/",
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
@@ -13,6 +13,8 @@
     "nodemon": "^3.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
+    "react-date-picker": "^10.6.0",
+    "react-datepicker": "^6.6.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-infinite-scroll-component": "^6.1.0",

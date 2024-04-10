@@ -4,23 +4,21 @@ Returns:
     Asteroids closest to earth based on its date
 """
 from flask import jsonify
-from models import app_views
 from datetime import datetime, timedelta
-import os
-from dotenv import load_dotenv
 import requests
 from .location import get_userloc
+from models import app_views
 
-load_dotenv()
-nkey = os.getenv("NASA_API_KEY")
-rapid_key = os.getenv("RAPIDAPI_API_KEY")
+from App import cache
 
 
 @app_views.route('/skymap', strict_slashes=False, methods=['GET', 'POST'])
+#@cache.cached(timeout=10)
 def NeoWs():
     """ View to return Near Earth Asteroid information within a
     7 day period -> NASA NeoWs API
     """
+    from App import nkey
     try:
         end = datetime.today().strftime('%Y-%m-%d')
         start = (datetime.today() - timedelta(days=7)).strftime('%Y-%m-%d')
@@ -36,10 +34,12 @@ def NeoWs():
 
 
 @app_views.route('/moon', strict_slashes=False)
+#@cache.cached(timeout=10)
 def planets():
     """ View function to return the moon/sun & planets in the night sky
     based on user location
     """
+    from App import rapid_key
     try:
         data = get_userloc()
         longitude = data.longitude
@@ -63,9 +63,11 @@ def planets():
 
 
 @app_views.route('/news', strict_slashes=False, methods=['GET'])
+#@cache.cached(timeout=10)
 def TiS():
     """Today in Space
     Returns An Article containing todays News in Space"""
+    from App import rapid_key
     try:
         url = "https://spacenews.p.rapidapi.com/datenews/1"
         headers = {
@@ -82,10 +84,11 @@ def TiS():
         return jsonify({'error': f'Internal Server Error: {e}'}), 500
 
 
-@app_views.route('/lunar', strict_slashes=False, methods=['GET'])
+@app_views.route('/lunar', strict_slashes=False, methods=['GET'])@cache.cached(timeout=10)
 def lunar_calendar():
     """ Retrieves the lunar calendar representing all the phases of the moon
     for the whole year"""
+    from App import rapid_key
     try:
         url = "https://moon-phase.p.rapidapi.com/calendar"
         querystring = {"format":"html"}
@@ -101,3 +104,4 @@ def lunar_calendar():
             return jsonify({'error': f'Request failed with status code {response.status_code}'}), response.status_code
     except Exception as e:
         return jsonify({'error': f'Internal Server Error: {e}'}), 500
+
