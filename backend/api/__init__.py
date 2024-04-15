@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-""" API Blueprint """
-from flask import Blueprint
+""" Routes Blueprint definition """
+from flask import Blueprint, current_app
 
+app_views = Blueprint('app_views', __name__)
 
-app_views = Blueprint('app_views', __name__, url_prefix='')
-
-from . import space, home
-
+from . import routes

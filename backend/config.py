@@ -22,17 +22,6 @@ class DefaultConfig(Config):
     def rapid_key(self):
         return os.getenv("RAPIDAPI_API_KEY")
 
-class DevConfig(DefaultConfig):
-    """ Development env variables """
-    DEBUG = True
-
-class ProdConfig(DefaultConfig):
-    """ Production env variables """
-    pass
-
-
-config = {
-    'development': DevConfig,
-    'production': ProdConfig,
-    'default': DevConfig
-}
+    @property
+    def Ipdata(self):
+        return os.getenv("IPDATA_API_KEY")

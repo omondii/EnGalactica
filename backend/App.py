@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-""" Application entry point """
-from backend import create_app
+""" Server entry point """
+import os
+from __init__ import create_app
 
+
+env = os.getenv('FLASK_ENV', 'development')
+
+app = create_app(env)
 
 if __name__ == '__main__':
-    app = create_app('development')
+    app.run(debug=(env != 'production'))
