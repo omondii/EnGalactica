@@ -22,7 +22,7 @@ const Home = () => {
   const fetchPOTD = async (date) => {
     try {
       const formattedDate = date.toISOString().split('T')[0];
-      const response = await fetch(`/POTD?date=${formattedDate}`);
+      const response = await fetch(`/potd?date=${formattedDate}`);
       const data = await response.json();
       setPicture(data.hdurl);
       setText(data.explanation);

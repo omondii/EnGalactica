@@ -1,11 +1,28 @@
-FROM node:14
+# Dockerfile to build the react frontend
 
-WORKDIR /frontend
+# STEP 1: build the react frontend
+FROM node:16-alpine as build-step
 
-COPY package.json package-lock.json ./
+# Set the working directory
+WORKDIR /app
 
+# Add the bin directory to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+
+# Install app dependancies
+COPY package.json ./
+
+# Copy contents to the working directory
+ADD . /app
+
+# Install dependancies
 RUN npm install
 
-COPY . .
+# Build the frontend optimized 
+RUN npm build
 
-CMD ["npm", "start"]
+
+# STEP 2: build an nginx container
+FROM nginx:stable-alpine
+COPY --from=build-step /app/build /usr/share/nginx/html
+COPY deploy/nginx.default.conf /etc/nginx/conf.d/default.conf

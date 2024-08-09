@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import os
-from flask import Flask, jsonify, Blueprint, current_app
+from flask import Flask, jsonify, Blueprint, current_app, request
 from datetime import datetime, timedelta
 import requests
 from api import app_views
@@ -13,7 +13,7 @@ load_dotenv()
 nkey = os.getenv("NASA_API_KEY")
 rapid_key =os.getenv("RAPIDAPI_API_KEY")
 
-@app_views.route("/POTD", strict_slashes=False, methods=['GET'])
+@app_views.route("/potd", strict_slashes=False, methods=['GET'])
 #@cache.cached(timeout=100)
 def daily_pic():
     """ View func to retrieve & return the Picture Of The Day from the Nasa Api using
@@ -84,3 +84,30 @@ def planets():
             return jsonify({'error': f'Request failed with status code {response.status_code}'}), response.status_code
     except Exception as e:
         return jsonify({'error': f'Internal Server Error: {e}'}), 500
+    
+
+@app_views.route('/news', strict_slashes=False, methods=['GET'])
+#@cache.cached(timeout=10)
+def TiS():
+    """Today in Space
+    Returns An Article containing todays News in Space"""
+    try:
+        url = "https://spacenews.p.rapidapi.com/datenews/1"
+        headers = {
+            "X-RapidAPI-Key": rapid_key,
+            "X-RapidAPI-Host": "spacenews.p.rapidapi.com"
+            }
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            data = response.json()
+            return jsonify(data)
+        else:
+            return jsonify({'error': f'Request failed with status code {response.status_code}'}), response.status_code
+    except Exception as e:
+        return jsonify({'error': f'Internal Server Error: {e}'}), 500
+
+@app_views.route('/asteroid_lookup', methods=['GET'])
+def lookup_asteroid():
+    """ Returns specifics about an asteroid based on its id.
+    A NASA API"""
+    asteroid_id = request.args.get('asteroid_id')
